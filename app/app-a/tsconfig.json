@@ -4,6 +4,10 @@
     "rootDir": ".",
     // "composite": true,
     // "declaration": true
+    "paths":{
+      "just/*": ["*", "../../bazel-bin/*", "../../*"]
+    }
   },
+  
   "include": ["."]
 }

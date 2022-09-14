@@ -18,7 +18,7 @@ ts_project(
     ],
     tsconfig = ":tsconfig.json",
     deps = [
-    #    "//lib/lib-a",
+       "//lib/lib-a",
         "//:node_modules/@types/node",
        ":node_modules",
     ],
