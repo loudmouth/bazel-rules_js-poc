@@ -1,31 +1,40 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
-    name = "build_bazel_rules_nodejs",
-    sha256 = "493bb318d98bb7492cb30e534ad33df2fc5539b43d4dcc4e294a5cc60a126902",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.5.4/rules_nodejs-5.5.4.tar.gz"],
+    name = "aspect_rules_ts",
+    sha256 = "3eb3171c26eb5d0951d51ae594695397218fb829e3798eea5557814723a1b3da",
+    strip_prefix = "rules_ts-1.0.0-rc3",
+    url = "https://github.com/aspect-build/rules_ts/archive/refs/tags/v1.0.0-rc3.tar.gz",
 )
 
-load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_dependencies")
 
-build_bazel_rules_nodejs_dependencies()
+##################
+# rules_ts setup #
+##################
+# Fetches the rules_ts dependencies.
+# If you want to have a different version of some dependency,
+# you should fetch it *before* calling this.
+# Alternatively, you can skip calling this function, so long as you've
+# already fetched all the dependencies.
+load("@aspect_rules_ts//ts:repositories.bzl", "LATEST_VERSION", "rules_ts_dependencies")
 
-load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
+rules_ts_dependencies(ts_version = LATEST_VERSION)
 
-# to get checksums, go to https://nodejs.org/es/blog/release/v16.17.0 and replace with the version number of interest
-node_repositories(
-    node_repositories = {
-        "16.17.0-linux_arm64": ("node-v16.17.0-linux-arm64.tar.gz", "node-v16.17.0-linux-arm64", "0e83e93bd3658f4ae516b5f1f174190bd87aaae3d691eb91a8945eed04dc8491"),
-        "16.17.0-linux_amd64": ("node-v16.17.0-linux-x64.tar.gz", "node-v16.17.0-linux-x64", "4827808e50b8ee42b4dadf056835287dac267b9cff56cea56e70843bf8cecb79"),
-        "16.17.0-darwin_amd64": ("node-v16.17.0-darwin-x64.tar.gz", "node-v16.17.0-darwin-x64", "b85eaa537f9d60a68c704e23839db65b5a75f14b37d6855c5d4e31a6bcef26c6"),
-        "16.17.0-darwin_arm64": ("node-v16.17.0-darwin-arm64.tar.gz", "node-v16.17.0-darwin-arm64", "96eefac1e168ec1bf39c5ae1e7b2760522624adfbe2e0c92875cd33ef9a07792"),
-        "16.17.0-windows_amd64": ("node-v16.17.0-win-x64.zip", "node-v16.17.0-win-x64", "c1a3be05342166cb9304d01da7ff8b23df6d4b16f9c98ae33b9b4fff79d8d0e2"),
-    },
-    node_version = "16.17.0",
+# Fetch and register node, if you haven't already
+load("@rules_nodejs//nodejs:repositories.bzl", "DEFAULT_NODE_VERSION", "nodejs_register_toolchains")
+
+nodejs_register_toolchains(
+    name = "node",
+    node_version = DEFAULT_NODE_VERSION,
 )
 
-yarn_install(
+load("@aspect_rules_js//npm:npm_import.bzl", "npm_translate_lock")
+
+npm_translate_lock(
     name = "npm",
-    package_json = "//:package.json",
-    yarn_lock = "//:yarn.lock",
+    pnpm_lock = "//:pnpm-lock.yaml",
 )
+
+load("@npm//:repositories.bzl", "npm_repositories")
+
+npm_repositories()

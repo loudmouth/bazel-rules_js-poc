@@ -9,7 +9,10 @@
     "app/app-a"
   ],
   "devDependencies": {
-    "typescript": "^4.8.3",
-    "@bazel/typescript": "^5.5.4"
+    "@bazel/typescript": "^5.5.4",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@bazel/buildozer": "^5.1.0"
   }
 }
