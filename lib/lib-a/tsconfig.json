@@ -2,8 +2,8 @@
  "compilerOptions": {
     "baseUrl": ".",
     "rootDir": ".",
-    "composite": true,
-    "declaration": true
+    // "composite": true,
+    // "declaration": true
   },
   "include": ["."]
 }

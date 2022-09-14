@@ -1,5 +1,6 @@
 load("@npm//:defs.bzl", "npm_link_all_packages")
-load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
+# load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -12,20 +13,20 @@ npm_link_all_packages(
     name = "node_modules"
 )
 
-ts_config(
-    name = "tsconfig",
-    src = "tsconfig.json",
-    deps = [
-        "//:tsconfig.json",
-    ],
-)
+# ts_config(
+#     name = "tsconfig",
+#     src = "tsconfig.json",
+#     deps = [
+#         "//:tsconfig.json",
+#     ],
+# )
 
 ts_project(
     name = "lib-a",
     srcs = [
         "index.ts",
     ],
-    tsconfig = "tsconfig",
+    tsconfig = ":tsconfig.json",
     deps = [
         ":node_modules",
     ],
