@@ -1,14 +1,9 @@
 {
  "compilerOptions": {
     "baseUrl": ".",
-    "rootDirs": [
-      ".",
-      "../../."
-    ],
-    "composite": true,
-    "declaration": true
+    "rootDir": ".",
+    // "composite": true,
+    // "declaration": true
   },
- "references": [ 
-    { "path": "../../." },
-  ]
+  "include": ["."]
 }
