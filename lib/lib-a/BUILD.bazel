@@ -1,7 +1,5 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_config", "ts_project")
 
-# load("//tools/rules/eslint:defs.bzl", "eslint_test")
-
 package(default_visibility = ["//visibility:public"])
 
 ts_config(
