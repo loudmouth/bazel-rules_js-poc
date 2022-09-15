@@ -7,13 +7,8 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "rootDirs": [
-      "*", 
-      "../../*",
-      "../../bazel-bin/*"
-    ],
+    "rootDir": ".",
     "declaration": true,
-
     "paths":{
       "just/*": ["*", "../../bazel-bin/*", "../../*"]
     }

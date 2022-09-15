@@ -1,10 +1,11 @@
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
-load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@aspect_rules_js//js:defs.bzl", "js_library")
 
 package(default_visibility = ["//visibility:public"])
 
 exports_files([
+    "data.json",
     "tsconfig.json",
 ])
 
@@ -13,26 +14,19 @@ npm_link_all_packages(
 )
 
 ts_project(
-    name = "app-a",
+    name = "compile_ts",
+    declaration = True,
     srcs = [
+        "data.json",
         "index.ts",
     ],
     tsconfig = ":tsconfig.json",
-    declaration = True,
     resolve_json_module = True,
-    deps = [
-       "//lib/lib-a",
-       "//lib/lib-data",
-        "//:node_modules",
-       ":node_modules",
-    ],
 )
 
-js_binary(
-    name = "main",
-    # chdir = package_name(),
-    data = [
-        ":package.json",
+js_library(
+    name = "lib-data",
+    deps = [
+        ":compile_ts",
     ],
-    entry_point = "index.js",
 )

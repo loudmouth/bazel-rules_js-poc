@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "name": "John Smith",
+      "age": 28
+    },
+    {
+      "name": "Ola Normann",
+      "age": 32
+    }
+  ],
+  "others": [
+    {
+      "id": 1,
+      "friend": "John Smith"
+    },
+    {
+      "id": 2,
+      "friend": "Ola Normann"
+    }
+  ]
+}

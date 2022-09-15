@@ -30,6 +30,9 @@ importers:
     devDependencies:
       '@types/lodash': 4.14.185
 
+  lib/lib-data:
+    specifiers: {}
+
 packages:
 
   /@bazel/buildozer/5.1.0:
