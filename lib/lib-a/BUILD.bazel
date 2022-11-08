@@ -13,11 +13,12 @@ npm_link_all_packages(
 
 ts_project(
     name = "lib-a",
+    declaration = True,
     srcs = [
         "index.ts",
     ],
-    tsconfig = ":tsconfig.json",
     deps = [
         ":node_modules",
     ],
+    tsconfig = ":tsconfig.json",
 )

@@ -9,9 +9,6 @@
     "baseUrl": ".",
     "rootDir": ".",
     "declaration": true,
-    "paths":{
-      "just/*": ["*", "../../bazel-bin/*", "../../*"]
-    }
   },
   
   "include": ["."]

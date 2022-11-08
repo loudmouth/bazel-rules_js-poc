@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "rootDir": ".",
     // "composite": true,
-    // "declaration": true
+    "declaration": true
   },
   "include": ["."]
 }

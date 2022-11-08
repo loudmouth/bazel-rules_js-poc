@@ -2,6 +2,7 @@ load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
 
+
 package(default_visibility = ["//visibility:public"])
 
 exports_files([
@@ -33,6 +34,7 @@ js_binary(
     # chdir = package_name(),
     data = [
         ":package.json",
+        ":app-a",
     ],
     entry_point = "index.js",
 )
