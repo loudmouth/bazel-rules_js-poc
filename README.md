@@ -1,4 +1,9 @@
 # bazel-yarn-workspace
 demo bazel yarn workspace
 
-Goal is to build both `//lib/lib-a` and after that `//app/app-a`
+Goals
+- [x] build `//lib/lib-a` 
+- [x] build `//lib/lib-data` 
+- [x] build `//app/app-a:main`
+- [ ] run `//lib/lib-a` which includes `//lib/lib-data`
+  - Failing here ☝️ "Cannot find module './data.json'"
