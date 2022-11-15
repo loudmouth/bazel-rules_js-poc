@@ -1,6 +1,7 @@
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
-
+load("@aspect_rules_js//js:defs.bzl", "js_library")
+ 
 package(default_visibility = ["//visibility:public"])
 
 exports_files([
@@ -13,7 +14,7 @@ npm_link_all_packages(
 )
 
 ts_project(
-    name = "lib-data",
+    name = "lib-data_ts",
     declaration = True,
     srcs = [
         "data.json",
@@ -23,3 +24,12 @@ ts_project(
     resolve_json_module = True,
 )
 
+js_library(
+    name = "lib-data",
+    deps = [
+        ":lib-data_ts",
+    ],
+    srcs = [
+        ":data.json",
+    ]
+)
