@@ -1,5 +1,5 @@
-# bazel-yarn-workspace
-demo bazel yarn workspace
+# bazel-rules_js-poc
+POC bazel rules_js, rules_ts, rules_webpack
 
 Goals
 - [x] build `//lib/lib-a` 
